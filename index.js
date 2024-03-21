@@ -45,11 +45,12 @@ input.addEventListener('keypress',(event) => {
     event.preventDefault()
     const task = input.value.trim()
     if (task !== ''){
-      renderTask(task)
-      input.value = ''
+      saveTask(task).then((json)=>{
+        renderTask(task)
+        input.value = ''
+      })
+     }
     }
-
-  }
-})
+  })
 
 getTask()
