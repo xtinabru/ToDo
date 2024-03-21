@@ -25,10 +25,19 @@ const getTask = async () => {
   }
 }
 const saveTask = async (task) => {
-  saveTask(task).then((json)=>{
-    renderTask(task)
-    input.value = ''
-  })
+  try {
+    const json = JSON.stringify({description: task})
+    const response = await fetch(BACKEND_ROOT_URL + '/new',{
+      method: 'post',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: json
+    })
+    return response.json()
+  } catch (error) {
+    alert("Error saving task" + error.message)
+  }
 }
 
 input.addEventListener('keypress',(event) => {
