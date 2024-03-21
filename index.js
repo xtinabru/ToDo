@@ -1,3 +1,5 @@
+const BACKEND_ROOT_URL = 'http://localhost:3001'
+
 const list = document.querySelector('ul')
 const input = document.querySelector('input')
 
