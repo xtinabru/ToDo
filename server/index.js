@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 const port = 3001;
 
 app.get('/',(req, res) => {
