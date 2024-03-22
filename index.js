@@ -1,5 +1,10 @@
 const BACKEND_ROOT_URL = 'http://localhost:3001'
 
+import { Todos } from "./class/Todos.js"
+
+const todos = new Todos(BACKEND_ROOT_URL)
+
+
 const list = document.querySelector('ul')
 const input = document.querySelector('input')
 
