@@ -47,12 +47,13 @@ input.addEventListener('keypress',(event) => {
     event.preventDefault()
     const task = input.value.trim()
     if (task !== ''){
-      saveTask(task).then((json)=>{
+      todos.addTask(task).then((task) => {
         renderTask(task)
         input.value = ''
-      })
+        input.focus()
+      })  
+      }
      }
-    }
-  })
+    })
 
 getTask()
