@@ -51,6 +51,12 @@ class Todos {
     this.#tasks.push(task)
     return task
   }
+
+  #removeFromArray = (id) => {
+    const arrayWithoutRemoved = this.#tasks.filter(task => task.id !== id)
+    this.#tasks = arrayWithoutRemoved
+  }
+
 }
 
 export { Todos }
