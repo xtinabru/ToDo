@@ -12,7 +12,8 @@ input.disabled = true
 const renderTask = (task) => {
   const li = document.createElement('li')
   li.setAttribute('class', 'list-group-item')
-  li.innerHTML = task.getText()
+  renderSpan(li, task.getText())
+  renderLink(li, task.getId())
   list.append(li)
 }
 
