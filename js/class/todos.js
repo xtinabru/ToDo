@@ -28,7 +28,5 @@ class Todos {
     this.#tasks.push(task)
   })
   }
-
-
 }
-
+export { Todos }

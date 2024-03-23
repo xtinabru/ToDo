@@ -1,7 +1,6 @@
 const BACKEND_ROOT_URL = 'http://localhost:3001'
 
-import { Todos } from "./class/Todos.js"
-
+import { Todos } from "./class/todos.js"
 const todos = new Todos(BACKEND_ROOT_URL)
 
 
@@ -13,22 +12,20 @@ input.disabled = true
 const renderTask = (task) => {
   const li = document.createElement('li')
   li.setAttribute('class', 'list-group-item')
-  li.innerHTML = task
+  li.innerHTML = task.getText()
   list.append(li)
 }
 
-const getTask = async () => {
-  try {
-    const response = await fetch(BACKEND_ROOT_URL)
-    const json = await response.json()
-    json.forEach(task => {
-      renderTask(task.description)
+const getTask = () => {
+  todos.getTasks().then((task)=> {
+    task.forEach(task => {
+      renderTask(task)
     })
-    input.disabled = false
-  } catch (error) {
-    alert("Error retrieving tasks " + error.message)
-  }
+  }).catch((error)=> {
+    alert(error)
+  })
 }
+
 const saveTask = async (task) => {
   try {
     const json = JSON.stringify({description: task})
