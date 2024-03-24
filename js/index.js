@@ -1,4 +1,4 @@
-const BACKEND_ROOT_URL = 'http://localhost:3001'
+const BACKEND_ROOT_URL = 'https://todo-backend-cgil.onrender.com'
 
 import { Todos } from "./class/todos.js"
 const todos = new Todos(BACKEND_ROOT_URL)
