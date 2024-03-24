@@ -11,18 +11,16 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 const port = process.env.PORT;
 
-app.post("/new", (req, res) =>{
-  const pool = openDb()
-
-  pool.query('insert into task (description) values ($1) returning *',
-  [req.body.description],
-  (error, result) => {
-    if (error){
-      res.status(500).json({error: error.message})
-    } else {
-      res.status(200).json({id: result.rows[0].id})
-    }
-  })
+app.post("/new", async (req, res) =>{
+ try {
+  const result = await query('insert into task (description) values ($1) returning *',
+  [ req.body.description])
+  res.status(200).json({id:result.rows[0].id})
+ } catch (error) {
+  console.log(error)
+  res.statusMessage = error
+  res.status(500).json({error: error})
+ }
 })
 
 
