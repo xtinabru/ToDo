@@ -1,9 +1,8 @@
 require('dotenv').config()
-
+console.log(process.env)
 const express = require('express');
 const cors = require('cors');
-//const { Pool } = require('pg');
-const { query } = require('./helpers/db.js')
+const { Pool } = require('pg');
 
 const app = express();
 app.use(cors());
