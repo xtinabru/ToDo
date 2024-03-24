@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-const port = process.env.PORT;
+const port = 3001;
 
 app.post("/new", (req, res) =>{
   const pool = openDb()
@@ -52,11 +52,11 @@ app.delete("/delete/:id", async(req,res) => {
 
 const openDb = () => {
   const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    user: 'postgres',
+    host: 'localhost',
+    database: 'todo',
+    password: '1234',
+    port: 5432
   })
   return pool
 }
