@@ -38,16 +38,17 @@ app.get('/', async (req, res) => {
 })
 
 app.delete("/delete/:id", async(req,res) => {
-const id = Number(req.params.id)
-try {
-  const result = await query('delete from task where id = $1',
-  [id])
-  res.status(200).json({id:id})
-} catch (error) {
-  console.log(error)
-  res.statusMessage = error
-  res.status(500).json({error: error})
-}
+  const pool = openDb()
+  const id = parseInt(req.params.id)
+  pool.query('delete from task where id = $1',
+  [id],
+  (error, result) => {
+    if (error) {
+      res.status(500).json({error: error.message})
+    } else {
+      res.status(200).json({id:id})
+    }
+  })
 })
 
 const openDb = () => {
