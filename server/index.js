@@ -40,8 +40,7 @@ app.get('/', async (req, res) => {
 app.delete("/delete/:id", async(req,res) => {
 const id = Number(req.params.id)
 try {
-  const result = await query('delete from task where id = $1',
-  [id])
+  const result = await query('delete from task where id = $1',[id])
   res.status(200).json({id:id})
 } catch (error) {
   console.log(error)
