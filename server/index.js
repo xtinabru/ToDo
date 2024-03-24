@@ -26,17 +26,15 @@ app.post("/new", (req, res) =>{
 })
 
 
-app.get('/', async (req, res) => {
-  console.log(query)
-  try {
-    const result = await query('select * from task')
-    const rows = result.rows ? result.rows : []
-    res.status(200).json(rows)
-  } catch (error){
-    console.log(error)
-    res.statusMessage = error
-    res.status(500).json({error: error})
-  }
+app.get('/',(req, res) => {
+  const pool = openDb()
+
+  pool.query('select * from task', (error, result) => {
+    if (error) {
+      res.status(500).json({error: error.message})
+    }
+    res.status(200).json(result.rows)
+  })
 })
 
 app.delete("/delete/:id", async(req,res) => {
